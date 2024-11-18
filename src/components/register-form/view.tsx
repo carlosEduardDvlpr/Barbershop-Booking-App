@@ -13,44 +13,22 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { EyeIcon, Loader2 } from 'lucide-react';
 import React from 'react';
+import { RegisterFormProps } from './type';
 
-interface RegisterFormProps {
-  error: string;
-  loading: boolean;
-  success: boolean;
-  nameRef: React.RefObject<HTMLInputElement>;
-  emailRef: React.RefObject<HTMLInputElement>;
-  passwordRef: React.RefObject<HTMLInputElement>;
-  confirmedPasswordRef: React.RefObject<HTMLInputElement>;
-  handleShowPassword: () => void;
-  handleShowConfirmedPassword: () => void;
-  handleLoginSubmit: (ev: React.FormEvent) => Promise<null | undefined>;
-}
-
-export function RegisterFormView({
-  error,
-  loading,
-  success,
-  nameRef,
-  emailRef,
-  passwordRef,
-  confirmedPasswordRef,
-  handleShowPassword,
-  handleShowConfirmedPassword,
-  handleLoginSubmit,
-}: RegisterFormProps) {
+export function RegisterFormView(props: RegisterFormProps) {
   return (
     <Card className="w-full sm:max-w-md max-w-[90%] mx-auto">
       <CardHeader>
         <CardTitle>Registre-se</CardTitle>
         <CardDescription>Informe seus dados e crie uma conta.</CardDescription>
       </CardHeader>
-      <form onSubmit={handleLoginSubmit}>
+      <form onSubmit={props.handleLoginSubmit}>
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">Nome</Label>
             <Input
-              ref={nameRef}
+              readOnly={props.loading}
+              ref={props.nameRef}
               id="name"
               type="text"
               placeholder="Informe seu nome"
@@ -60,7 +38,8 @@ export function RegisterFormView({
           <div className="space-y-2">
             <Label htmlFor="email">E-mail</Label>
             <Input
-              ref={emailRef}
+              readOnly={props.loading}
+              ref={props.emailRef}
               id="email"
               type="email"
               placeholder="seu@email.com"
@@ -69,18 +48,25 @@ export function RegisterFormView({
           </div>
           <div className="space-y-2 relative">
             <Label htmlFor="password">Senha</Label>
-            <Input ref={passwordRef} id="password" type="password" required />
+            <Input
+              readOnly={props.loading}
+              ref={props.passwordRef}
+              id="password"
+              type="password"
+              required
+            />
 
             <EyeIcon
               size={24}
-              onClick={handleShowPassword}
+              onClick={props.handleShowPassword}
               className={`absolute bottom-2 right-3`}
             />
           </div>
           <div className="space-y-2 relative">
             <Label htmlFor="confirmedPassword">Confirme a senha</Label>
             <Input
-              ref={confirmedPasswordRef}
+              readOnly={props.loading}
+              ref={props.confirmedPasswordRef}
               id="confirmedPassword"
               type="password"
               required
@@ -88,13 +74,15 @@ export function RegisterFormView({
 
             <EyeIcon
               size={24}
-              onClick={handleShowConfirmedPassword}
+              onClick={props.handleShowConfirmedPassword}
               className={`absolute bottom-2 right-3`}
             />
           </div>
         </CardContent>
-        {error && <p className="text-base text-red-500 pb-2 pl-6">{error}</p>}
-        {success && (
+        {props.error && (
+          <p className="text-base text-red-500 pb-2 pl-6">{props.error}</p>
+        )}
+        {props.success && (
           <div className="pb-2 pl-6">
             <p className="text-base text-green-500">
               Usuário registrado com sucesso!
@@ -105,8 +93,10 @@ export function RegisterFormView({
           </div>
         )}
         <CardFooter>
-          <Button className="w-full" disabled={loading}>
-            {loading && <Loader2 size={16} className="mr-2 animate-spin" />}
+          <Button className="w-full" disabled={props.loading}>
+            {props.loading && (
+              <Loader2 size={16} className="mr-2 animate-spin" />
+            )}
             Entrar
           </Button>
         </CardFooter>

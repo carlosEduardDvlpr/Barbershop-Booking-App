@@ -47,17 +47,16 @@ export function useRegisterFormModel() {
       return null;
     }
 
-    const result = verifyDataLogin(name, email, password, confirmedPassword);
-    if (result !== 'success') {
-      setError(result);
+    const verify = verifyDataLogin(name, email, password, confirmedPassword);
+    if (verify !== 'success') {
+      setError(verify);
       setLoading(false);
     } else {
       const register = await userRegister(name, email, password);
       if (register.success) {
         setSuccess(true);
         setTimeout(() => redirect('/'), 1000);
-      }
-      if (!register.success) {
+      } else {
         setError(register.error);
         setLoading(false);
       }
