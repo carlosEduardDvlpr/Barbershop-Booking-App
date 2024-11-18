@@ -27,7 +27,9 @@ export function useLoginFormModel() {
     const password = passwordRef.current?.value;
 
     if (!email || !password) {
-      return setError('Informe todos os dados!');
+      setError('Informe todos os dados!');
+      setLoading(false);
+      return null;
     }
 
     const resultLogin = await userLogin(email, password);
