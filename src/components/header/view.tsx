@@ -1,8 +1,14 @@
-import Link from "next/link";
-import { HeaderProps } from "./type";
-import { Calendar, HomeIcon, LogOut, Menu } from "lucide-react";
-import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import Link from 'next/link';
+import { HeaderProps } from './type';
+import { Calendar, HomeIcon, LogOut, Menu, X } from 'lucide-react';
+import { Button } from '../ui/button';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '../ui/sheet';
 
 export function HeaderView(props: HeaderProps) {
   return (
@@ -42,6 +48,11 @@ export function HeaderView(props: HeaderProps) {
               </SheetTrigger>
               <SheetContent>
                 <SheetTitle>Menu</SheetTitle>
+                <SheetClose asChild className="absolute top-4 right-5">
+                  <Button variant="outline" size="icon">
+                    <X size={16} />
+                  </Button>
+                </SheetClose>
                 <div className="my-8">
                   <h1 className="text-xl font-bold">Olá {props.user?.name}</h1>
                   <p className="text-sm text-gray-400">{props.user?.email}</p>
