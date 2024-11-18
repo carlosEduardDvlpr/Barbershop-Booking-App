@@ -14,6 +14,7 @@ import { Label } from '@/components/ui/label';
 import { EyeIcon, Loader2 } from 'lucide-react';
 import React from 'react';
 import { RegisterFormProps } from './type';
+import Link from 'next/link';
 
 export function RegisterFormView(props: RegisterFormProps) {
   return (
@@ -100,6 +101,14 @@ export function RegisterFormView(props: RegisterFormProps) {
             Entrar
           </Button>
         </CardFooter>
+        <div className="mb-6 text-sm text-center">
+          <p>
+            Já possui uma conta?{" "}
+            <Link href="/login" className="underline">
+              Entrar
+            </Link>
+          </p>
+        </div>
       </form>
     </Card>
   );
