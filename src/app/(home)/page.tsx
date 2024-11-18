@@ -1,7 +1,17 @@
-export default function Home() {
+import userInfo from '@/actions/user-info';
+import { Header } from '@/components/header/header';
+import { redirect } from 'next/navigation';
+
+export default async function Home() {
+  const user = await userInfo();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   return (
-    <section>
-      <h1>Home</h1>
-    </section>
+    <main className="h-dvh">
+      <Header user={user} />
+    </main>
   );
 }
