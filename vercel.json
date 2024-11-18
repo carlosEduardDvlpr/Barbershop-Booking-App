@@ -1,9 +1,0 @@
-{
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node"
-    }
-  ],
-  "includeFiles": ["prisma/schema.prisma", "prisma/migrations/**"]
-}
