@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { ButtonDelete } from './components/delete-booking-button';
-import { BookingSelection } from '@/components/booking-date-selection';
+import { BookingDateSelection } from '@/components/booking-date-selection';
 
 export default async function BookingPage() {
   const user = await getUser();
@@ -29,7 +29,7 @@ export default async function BookingPage() {
         </h2>
       )}
       <div className="sm:px-6 px-4 pb-3">
-        <BookingSelection user={user} />
+        <BookingDateSelection user={user} />
       </div>
       {bookings.filter((booking) => booking.date >= new Date())[0] && (
         <h2 className="sm:px-6 px-4 pt-2">Confirmados</h2>

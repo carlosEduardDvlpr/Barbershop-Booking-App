@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription } from '@/components/ui/card';
 import { getBookings } from '@/actions/get-bookings';
 import { Badge } from '@/components/ui/badge';
-import { BookingSelection } from '@/components/booking-date-selection';
+import { BookingDateSelection } from '@/components/booking-date-selection';
 
 export default async function Home() {
   const user = await getUser();
@@ -54,7 +54,7 @@ export default async function Home() {
         )}
       </div>
       <div className="sm:px-6 px-3 pt-3 pb-8">
-        <BookingSelection user={user} />
+        <BookingDateSelection user={user} />
       </div>
       <hr />
       <div className="sm:px-6 px-3 py-6">
