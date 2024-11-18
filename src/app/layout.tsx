@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Footer } from '@/components/footer';
+import { Toaster } from '@/components/ui/toaster';
 
 const font_inter = Inter({
   subsets: ['latin'],
@@ -19,8 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${font_inter.className} antialiased dark`}>
-        {children}
+      <body
+        className={`${font_inter.className} antialiased dark flex h-screen`}
+      >
+        <main className="flex-1">{children}</main>
+        <Toaster />
         <Footer />
       </body>
     </html>
