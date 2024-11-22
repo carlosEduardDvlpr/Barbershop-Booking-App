@@ -28,6 +28,8 @@ export default async function userRegister(
       {
         httpOnly: true,
         secure: true,
+        maxAge: 60 * 60 * 24 * 4,
+        path: '/',
       },
     );
 

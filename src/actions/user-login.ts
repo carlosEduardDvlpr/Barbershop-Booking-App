@@ -27,6 +27,8 @@ export default async function userLogin(email: string, password: string) {
         {
           httpOnly: true,
           secure: true,
+          maxAge: 60 * 60 * 24 * 4,
+          path: '/',
         },
       );
     } else {
