@@ -13,10 +13,12 @@ export async function setBooking(date: Date, userId: string) {
     return { error: 'missing info' };
   }
 
+  const dataUTC = new Date(date.toISOString());
+
   try {
     await db.booking.create({
       data: {
-        date,
+        date: dataUTC,
         userId,
       },
     });
