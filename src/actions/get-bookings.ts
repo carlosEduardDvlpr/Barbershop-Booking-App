@@ -4,10 +4,11 @@ import { getUser } from './user-info';
 
 export async function getBookings() {
   const user = await getUser();
+  const userId = user?.id;
 
   const bookings = await db.booking.findMany({
     where: {
-      userId: user?.id,
+      userId,
     },
     select: {
       date: true,

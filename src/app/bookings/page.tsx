@@ -12,6 +12,7 @@ import { BookingDateSelection } from '@/components/booking-date-selection';
 export default async function BookingPage() {
   const user = await getUser();
   const bookings = await getBookings();
+  console.log(bookings)
 
   if (!user) {
     redirect('/');

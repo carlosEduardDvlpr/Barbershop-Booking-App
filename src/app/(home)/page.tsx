@@ -1,7 +1,6 @@
 import { getUser } from '@/actions/user-info';
 import { Header } from '@/components/header';
 import { redirect } from 'next/navigation';
-import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Phone } from 'lucide-react';
 import Link from 'next/link';
@@ -10,6 +9,7 @@ import { Card, CardContent, CardDescription } from '@/components/ui/card';
 import { getBookings } from '@/actions/get-bookings';
 import { Badge } from '@/components/ui/badge';
 import { BookingDateSelection } from '@/components/booking-date-selection';
+import { format } from 'date-fns';
 
 export default async function Home() {
   const user = await getUser();
@@ -17,6 +17,7 @@ export default async function Home() {
   const bookingsFilter = bookings.filter(
     (booking) => booking.date > new Date(),
   );
+  console.log(bookings)
 
   if (!user) {
     redirect('/login');
