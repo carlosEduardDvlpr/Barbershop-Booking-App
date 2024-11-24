@@ -10,7 +10,7 @@ export async function setBooking(date: Date, userId: string) {
   try {
     await db.booking.create({
       data: {
-        date,
+        date: new Date(date),
         userId,
       },
     });
