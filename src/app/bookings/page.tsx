@@ -1,3 +1,4 @@
+import { TZDate } from '@date-fns/tz';
 import { getUser } from '@/actions/user-info';
 import { getBookings } from '@/actions/get-bookings';
 import { Header } from '@/components/header';
@@ -12,7 +13,7 @@ import { BookingDateSelection } from '@/components/booking-date-selection';
 export default async function BookingPage() {
   const user = await getUser();
   const bookings = await getBookings();
-  console.log(bookings)
+  console.log(bookings);
 
   if (!user) {
     redirect('/');
@@ -21,9 +22,7 @@ export default async function BookingPage() {
   return (
     <section>
       <Header user={user} />
-      <h1 className="sm:px-6 px-4 py-4 text-xl font-bold">
-        Meus Agendamentos
-      </h1>
+      <h1 className="sm:px-6 px-4 py-4 text-xl font-bold">Meus Agendamentos</h1>
       {!bookings[0] && (
         <h2 className="sm:px-6 px-4 pt-2 pb-3">
           Você ainda não possui nenhum agendamento...
@@ -47,9 +46,13 @@ export default async function BookingPage() {
                     </Badge>
                     <h2 className="text-foreground">Agendado para</h2>
                     <CardDescription>
-                      {format(new Date(booking.date), "dd 'de' MMMM 'ás' HH:mm", {
-                        locale: ptBR,
-                      })}
+                      {format(
+                        new TZDate(booking.date, 'America/Sao_Paulo'),
+                        "dd 'de' MMMM 'ás' HH:mm",
+                        {
+                          locale: ptBR,
+                        },
+                      )}
                     </CardDescription>
                   </div>
 
@@ -74,9 +77,13 @@ export default async function BookingPage() {
                     </Badge>
                     <h2 className="text-foreground">Finalizado em</h2>
                     <CardDescription>
-                      {format(new Date(booking.date), "dd 'de' MMMM 'ás' HH:mm", {
-                        locale: ptBR,
-                      })}
+                      {format(
+                        new TZDate(booking.date, 'America/Sao_Paulo'),
+                        "dd 'de' MMMM 'ás' HH:mm",
+                        {
+                          locale: ptBR,
+                        },
+                      )}
                     </CardDescription>
                   </div>
 
