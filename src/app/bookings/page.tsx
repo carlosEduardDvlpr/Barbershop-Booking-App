@@ -47,7 +47,7 @@ export default async function BookingPage() {
                     </Badge>
                     <h2 className="text-foreground">Agendado para</h2>
                     <CardDescription>
-                      {format(booking.date, "dd 'de' MMMM 'ás' HH:mm", {
+                      {format(new Date(booking.date), "dd 'de' MMMM 'ás' HH:mm", {
                         locale: ptBR,
                       })}
                     </CardDescription>
@@ -74,7 +74,7 @@ export default async function BookingPage() {
                     </Badge>
                     <h2 className="text-foreground">Finalizado em</h2>
                     <CardDescription>
-                      {format(booking.date, "dd 'de' MMMM 'ás' HH:mm", {
+                      {format(new Date(booking.date), "dd 'de' MMMM 'ás' HH:mm", {
                         locale: ptBR,
                       })}
                     </CardDescription>

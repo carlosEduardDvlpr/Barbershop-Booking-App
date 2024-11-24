@@ -17,7 +17,6 @@ export default async function Home() {
   const bookingsFilter = bookings.filter(
     (booking) => booking.date > new Date(),
   );
-  console.log(bookings)
 
   if (!user) {
     redirect('/login');
@@ -43,7 +42,7 @@ export default async function Home() {
               <div>
                 <h2 className="text-foreground">Ultimo agendamento</h2>
                 <CardDescription>
-                  {format(bookingsFilter[0].date, "dd 'de' MMMM 'ás' HH:mm", {
+                  {format(new Date(bookingsFilter[0].date), "dd 'de' MMMM 'ás' HH:mm", {
                     locale: ptBR,
                   })}
                 </CardDescription>
