@@ -12,12 +12,12 @@ model User {
   name     String
   email    String    @unique
   password String
-  bookings Booking[]
+  bookings  Booking[]
 }
 
 model Booking {
-  id     String @id @default(uuid())
-  date   String
+  id     String   @id @default(uuid())
+  date   DateTime 
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User     @relation(fields: [userId], references: [id])
 }
