@@ -10,6 +10,7 @@ import { getBookings } from '@/actions/get-bookings';
 import { Badge } from '@/components/ui/badge';
 import { BookingDateSelection } from '@/components/booking-date-selection';
 import { format } from 'date-fns';
+import { DateTime } from 'luxon';
 
 export default async function Home() {
   const user = await getUser();
@@ -17,6 +18,11 @@ export default async function Home() {
   const bookingsFilter = bookings.filter(
     (booking) => booking.date > new Date(),
   );
+  let localDate;
+  if (bookingsFilter.length > 0)
+    localDate = DateTime.fromISO(bookingsFilter[0].date.toISOString(), {
+      zone: 'UTC',
+    }).setZone('America/Sao_Paulo');
 
   if (!user) {
     redirect('/login');
@@ -42,9 +48,13 @@ export default async function Home() {
               <div>
                 <h2 className="text-foreground">Ultimo agendamento</h2>
                 <CardDescription>
-                  {format(new Date(bookingsFilter[0].date), "dd 'de' MMMM 'ás' HH:mm", {
-                    locale: ptBR,
-                  })}
+                  {format(
+                    new Date(localDate as unknown as Date),
+                    "dd 'de' MMMM 'ás' HH:mm",
+                    {
+                      locale: ptBR,
+                    },
+                  )}
                 </CardDescription>
               </div>
             </CardContent>

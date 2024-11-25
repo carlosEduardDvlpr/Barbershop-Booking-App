@@ -1,4 +1,3 @@
-import { TZDate } from '@date-fns/tz';
 import { getUser } from '@/actions/user-info';
 import { getBookings } from '@/actions/get-bookings';
 import { Header } from '@/components/header';
@@ -46,13 +45,9 @@ export default async function BookingPage() {
                     </Badge>
                     <h2 className="text-foreground">Agendado para</h2>
                     <CardDescription>
-                      {format(
-                        new TZDate(booking.date, 'America/Sao_Paulo'),
-                        "dd 'de' MMMM 'ás' HH:mm",
-                        {
-                          locale: ptBR,
-                        },
-                      )}
+                      {format(booking.date, "dd 'de' MMMM 'ás' HH:mm", {
+                        locale: ptBR,
+                      })}
                     </CardDescription>
                   </div>
 
@@ -77,13 +72,9 @@ export default async function BookingPage() {
                     </Badge>
                     <h2 className="text-foreground">Finalizado em</h2>
                     <CardDescription>
-                      {format(
-                        new TZDate(booking.date, 'America/Sao_Paulo'),
-                        "dd 'de' MMMM 'ás' HH:mm",
-                        {
-                          locale: ptBR,
-                        },
-                      )}
+                      {format(booking.date, "dd 'de' MMMM 'ás' HH:mm", {
+                        locale: ptBR,
+                      })}
                     </CardDescription>
                   </div>
 
