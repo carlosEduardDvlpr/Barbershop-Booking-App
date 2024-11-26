@@ -46,15 +46,11 @@ export default async function Home() {
                 Confirmado
               </Badge>
               <div>
-                <h2 className="text-foreground">Ultimo agendamento</h2>
+                <h2 className="text-foreground">Ultimo agendamento</h2> 
                 <CardDescription>
-                  {format(
-                    new Date(localDate as unknown as Date),
-                    "dd 'de' MMMM 'ás' HH:mm",
-                    {
-                      locale: ptBR,
-                    },
-                  )}
+                  {format(new Date(localDate as unknown as Date), "dd 'de' MMMM 'ás' HH:mm", {
+                    locale: ptBR,
+                  })}
                 </CardDescription>
               </div>
             </CardContent>
