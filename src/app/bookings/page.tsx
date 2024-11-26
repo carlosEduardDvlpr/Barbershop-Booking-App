@@ -4,7 +4,7 @@ import { Header } from '@/components/header';
 import { redirect } from 'next/navigation';
 import { Card, CardContent, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { format } from 'date-fns';
+import { format, sub } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { ButtonDelete } from './components/delete-booking-button';
 import { BookingDateSelection } from '@/components/booking-date-selection';
@@ -45,9 +45,13 @@ export default async function BookingPage() {
                     </Badge>
                     <h2 className="text-foreground">Agendado para</h2>
                     <CardDescription>
-                      {format(booking.date, "dd 'de' MMMM 'ás' HH:mm", {
-                        locale: ptBR,
-                      })}
+                      {format(
+                        sub(booking.date, { hours: 3 }),
+                        "dd 'de' MMMM 'ás' HH:mm",
+                        {
+                          locale: ptBR,
+                        },
+                      )}
                     </CardDescription>
                   </div>
 
@@ -72,9 +76,13 @@ export default async function BookingPage() {
                     </Badge>
                     <h2 className="text-foreground">Finalizado em</h2>
                     <CardDescription>
-                      {format(booking.date, "dd 'de' MMMM 'ás' HH:mm", {
-                        locale: ptBR,
-                      })}
+                      {format(
+                        sub(booking.date, { hours: 3 }),
+                        "dd 'de' MMMM 'ás' HH:mm",
+                        {
+                          locale: ptBR,
+                        },
+                      )}
                     </CardDescription>
                   </div>
 
